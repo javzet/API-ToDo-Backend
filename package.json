@@ -1,0 +1,21 @@
+{
+  "name": "todo-app",
+  "version": "0.1.0",
+  "description": "Backend for ToDo app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server/server.js"
+  },
+  "author": "Joshua Alexander y Javier Zetina",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.13.7",
+    "underscore": "^1.13.1"
+  }
+}
