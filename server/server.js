@@ -28,6 +28,7 @@ app.use(bodyParser.json());
 // Routes
 app.use(require('./routes/usuarios'));
 app.use(require('./routes/login'));
+app.use(require('./routes/todo'));
 
 // Cors
 const cors = require('cors');
