@@ -29,6 +29,7 @@ app.use(bodyParser.json());
 app.use(require('./routes/usuarios'));
 app.use(require('./routes/login'));
 app.use(require('./routes/todo'));
+app.use(require('./routes/nota'));
 
 // Cors
 const cors = require('cors');
