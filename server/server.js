@@ -21,9 +21,9 @@ mongoose.connect(process.env.URLDB, {
 });
 
 // Body-parser
-const bodyParser = require('body-parser');
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
+//const bodyParser = require('body-parser');
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
 
 // Routes
 app.use(require('./routes/usuarios'));
