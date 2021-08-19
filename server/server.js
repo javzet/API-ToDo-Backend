@@ -34,7 +34,7 @@ app.use(require('./routes/nota'));
 // Cors
 const cors = require('cors');
 let whiteList = ['http://localhost:3000']
-app.use(cors( { origin: whiteList } ));
+app.use(cors());
 
 // Configurar cabeceras y cors
 /*app.use((req, res, next) => {
