@@ -118,7 +118,7 @@ app.get( '/api/v1/me', [ verificaToken ], ( req, res ) => {
 app.post( '/api/v1/usuario', ( req, res ) => {
 
     let body = req.body;
-    console.log(req.body);
+    //console.log(req.body);
     let usuario = new Usuario({
         nombre: body.nombre,
         email: body.email,
@@ -134,10 +134,15 @@ app.post( '/api/v1/usuario', ( req, res ) => {
             });
         }
 
+        let token = jwt.sign( {
+            usuario
+        }, process.env.SEED, { expiresIn: process.env.CADUCIDAD });
+
         res.json({
             ok: true,
-            usuario
-        })
+            usuario,
+            token
+        });
     });
 });
 
@@ -156,7 +161,7 @@ app.put( '/api/v1/usuario', [ verificaToken ], ( req, res ) => {
         });
     }
 
-    console.log(bcrypt.compareSync(body.password_old, req.usuario.password));
+    //console.log(bcrypt.compareSync(body.password_old, req.usuario.password));
 
     if ( !bcrypt.compareSync(body.password_old, req.usuario.password) ) {
         return res.status(401).json({
