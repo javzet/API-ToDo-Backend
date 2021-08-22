@@ -2,6 +2,21 @@
 const express = require('express');
 const app = express();
 
+// Cors
+const cors = require('cors');
+const whiteList = [
+    "http://localhost:3000",
+    "http://localhost:8000",
+    "https://javzet.github.io"
+];
+
+const CORS_OPTIONS = {
+    origin: whiteList,
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"]
+};
+
+app.use(cors(CORS_OPTIONS));
+
 // Configuración
 require('./config/config');
 
@@ -30,29 +45,6 @@ app.use(require('./routes/usuarios'));
 app.use(require('./routes/login'));
 app.use(require('./routes/todo'));
 app.use(require('./routes/nota'));
-
-// Cors
-//const cors = require('cors');
-//let whiteList = ['http://localhost:3000']
-//app.use(cors( { origin: true, credentials: true } ));
-
-app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Headers', 'Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Request-Method');
-    res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
-    res.header('Allow', 'GET, POST, OPTIONS, PUT, DELETE');
-    next();
-});
-
-// Configurar cabeceras y cors
-/*app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Headers', 'Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Request-Method');
-    res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
-    res.header('Allow', 'GET, POST, OPTIONS, PUT, DELETE');
-    next();
-});*/
-
 
 // Run server
 app.listen( process.env.PORT, (err) => {
