@@ -115,10 +115,21 @@ app.get( '/api/v1/me', [ verificaToken ], ( req, res ) => {
 });
 
 // Crear Usuario
-app.post( '/api/v1/usuario', ( req, res ) => {
+app.post( '/api/v1/usuario', async ( req, res ) => {
 
-    let body = req.body;
+    const body = req.body;
     //console.log(req.body);
+   
+    
+    const emailExist = await Usuario.find({email: body.email});
+    
+    if(emailExist) {
+        return res.status(400).json({
+            ok: false,
+            message: `The email ${body.email} already exist`
+        });
+    }
+    
     let usuario = new Usuario({
         nombre: body.nombre,
         email: body.email,
